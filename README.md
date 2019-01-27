@@ -15,4 +15,4 @@ Module jQuery
 - autoplay_interval = temps de défilement entre chaque slide, exprimé en millisecondes.
 
 ## Built with
-* JavaScript
+* jQuery
