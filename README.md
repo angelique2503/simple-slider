@@ -1,0 +1,2 @@
+# simple-slider
+Plugin jQuery
