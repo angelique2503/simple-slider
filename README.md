@@ -1,2 +1,2 @@
 # simple-slider
-Plugin jQuery
+Module jQuery
