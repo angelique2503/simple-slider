@@ -8,9 +8,9 @@
 
 	/* ========= Slider Plugin ========= */
 
-    $.fn.slider = function(first_creation, animation, add_slide, remove_slide, colorsARR, autoplay, autoplay_interval) {
+    	$.fn.slider = function(first_creation, animation, add_slide, remove_slide, colorsARR, autoplay, autoplay_interval) {
 
-        // ========= Init slider
+        	// ========= Init slider
 
   		var $slider = $(this);
 		// $slider.load('slider-template.html');
@@ -18,14 +18,14 @@
   		// ========= Variables
 
   		var $slides = $slider.find('.slide'),
-            $arrows = $slider.find('.arrow'),
-  			$next = $slider.find('.next'),
-  			$previous = $slider.find('.previous'),
-            $bullets_container = $slider.find('.bullet-list'),
-  			$bullets = $slider.find('.bullet');
+            	$arrows = $slider.find('.arrow'),
+ 		$next = $slider.find('.next'),
+  		$previous = $slider.find('.previous'),
+            	$bullets_container = $slider.find('.bullet-list'),
+ 		$bullets = $slider.find('.bullet');
 
-        var indice = 0,
-            timer;
+        	var indice = 0,
+            	timer;
 
   		// ========= Functions
 
@@ -33,13 +33,13 @@
             $('.slide').removeClass('').addClass(animation+' animated slide');
         }
 
-  		function create_bullets() { // Créer la navigation par bulles
+  	function create_bullets() { // Créer la navigation par bulles
             var li;
-  			$('.slide').each(function(i,x) {
-                li = $('<li><button class="bullet slider-button" data-index="'+i+'"></button></li>');
-                $bullets_container.append(li);
-  			});
-  		}
+  		$('.slide').each(function(i,x) {
+                	li = $('<li><button class="bullet slider-button" data-index="'+i+'"></button></li>');
+                	$bullets_container.append(li);
+  		});
+  	}
 
         function show_first_slide() {
             $('.slide').hide();
