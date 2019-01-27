@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Plugin jQuery slider</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Angélique Allain" />
+    <meta name="description" content="Simple Slider jQuery Plugin" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" /> 
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/slider.css">
+</head>
+<body>
+    <header id="admin">
+        <div class="admin-content">
+            <h1>Simple slider</h1>
+            <nav>
+                <ul>
+                    <li><button class="admin-button" data-action="add-slide">&#10010; Add</button></li>
+                    <li><button class="admin-button" data-action="remove-slide">&#10006; Remove</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+
+        <div id="demo">
+            <nav class="slider-nav">
+                <div class="slider-nav-content">
+                    <ul class="bullet-list">
+                    </ul>
+                    <ul class="arrows">
+                        <li><button class="slider-button arrow next" data-index="">&#10095;</button></li>
+                        <li><button class="slider-button arrow previous" data-index="">&#10094;</button></li>
+                    </ul>
+                </div>
+            </nav>
+            <ul class="slider-list">
+                <li class="slide" data-index="0">
+                    <div class="slide-content">
+                        <h3 class="slide-title">Slide #1</h2>
+                    </div>
+                </li>
+                <li class="slide" data-index="1">
+                    <div class="slide-content">
+                        <h3 class="slide-title">Slide #2</h2>
+                    </div>
+                </li>
+                <li class="slide" data-index="2">
+                    <div class="slide-content">
+                        <h3 class="slide-title">Slide #3</h2>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </main>
+    <script src="js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/demo.js"></script>
+</body>
+</html>
