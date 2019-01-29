@@ -8,9 +8,9 @@
 
 	/* ========= Slider Plugin ========= */
 
-    	$.fn.slider = function(first_creation, animation, add_slide, remove_slide, colorsARR, autoplay, autoplay_interval) {
+    $.fn.slider = function(first_creation, animation, add_slide, remove_slide, colorsARR, autoplay, autoplay_interval) {
 
-        	// ========= Init slider
+        // ========= Init slider
 
   		var $slider = $(this);
 		// $slider.load('slider-template.html');
@@ -19,58 +19,25 @@
 
   		var $slides = $slider.find('.slide'),
             	$arrows = $slider.find('.arrow'),
- 		$next = $slider.find('.next'),
+  		$next = $slider.find('.next'),
   		$previous = $slider.find('.previous'),
             	$bullets_container = $slider.find('.bullet-list'),
- 		$bullets = $slider.find('.bullet');
+  		$bullets = $slider.find('.bullet');
 
-        	var indice = 0,
-            	timer;
+        var indice = 0,
+            timer;
 
   		// ========= Functions
 
-        function animate() { // Animer les slides
-            $('.slide').removeClass('').addClass(animation+' animated slide');
-        }
+        /** Bullets navigation & active bullet **/
 
-  	function create_bullets() { // Créer la navigation par bulles
-            var li;
+  	function create_bullets() {
+            	var li;
   		$('.slide').each(function(i,x) {
                 	li = $('<li><button class="bullet slider-button" data-index="'+i+'"></button></li>');
                 	$bullets_container.append(li);
   		});
   	}
-
-        function show_first_slide() {
-            $('.slide').hide();
-            $('.slide:first').show();
-            $('.bullet:first').addClass('active');
-        }
-
-        function next_slide() {
-  		    indice = (indice + 1) % $('.slide').length;
-            show_slide(indice);
-        }
-
-        function previous_slide() {
-            indice = ($('.slide').length + indice - 1) % $('.slide').length;
-            show_slide(indice);
-        }
-
-        function show_slide(indice) { // Afficher ou masquer une slide
-            remove_activeClass( $('.bullet') );
-            $('.slide').each(function() {
-                let $this = $(this);
-                if ( $this.data('index') == indice ) {
-                    $('.bullet[data-index="'+indice+'"').addClass('active');
-                    //get_previous_color($this);
-                    $this.show();
-                }
-                else {
-                    $this.hide();
-                }
-            });
-        }
 
         function remove_activeClass(bullets) { // Reset active class
             bullets.each(function() {
@@ -96,8 +63,53 @@
             });
         }
 
+        /** Slider **/
+
+        function show_first_slide() {
+            $('.slide').hide();
+            $('.slide:first').show();
+            $('.bullet:first').addClass('active');
+        }
+
+        function next_slide() {
+  		    indice = (indice + 1) % $('.slide').length;
+            left_animate();
+            show_slide(indice);
+        }
+
+        function previous_slide() {
+            indice = ($('.slide').length + indice - 1) % $('.slide').length;
+            right_animate();
+            show_slide(indice);
+        }
+
+        function show_slide(indice) { // Afficher ou masquer une slide
+            remove_activeClass( $('.bullet') );
+            $('.slide').each(function() {
+                let $this = $(this);
+                if ( $this.data('index') == indice ) {
+                    $('.bullet[data-index="'+indice+'"').addClass('active');
+                    //get_previous_color($this);
+                    $this.show();
+                }
+                else {
+                    $this.hide();
+                }
+            });
+        }
+
         function slider_autoplay() {
             next_slide();
+        }
+
+        /** Slide animation **/
+
+        function left_animate() {
+            $('.slide').removeClass('slideInRight').addClass('slideInLeft animated slide');
+        }
+
+        function right_animate() {
+            $('.slide').removeClass('slideInLeft').addClass('slideInRight animated slide');
         }
 
         // ========= Customize/add slides for DEMO
@@ -110,16 +122,13 @@
             });
         }
 
-        /*function get_previous_color(this_slide) {
-            var previous_color_name = this_slide.prev().data('color');
-            $('.slider-list').addClass(previous_color_name);
-        }*/
-
         function add_new_slide() {
             var i = parseInt($('.slide').length),
                 e = i+1,
                 slide = $('<li class="slide" data-index="'+i+'"><div class="slide-content"><h3 class="slide-title">Slide #'+e+'</h3></div></li>');
             $('.slider-list').append(slide);
+            indice = 0;
+            remove_activeClass($bullets);
         }
 
         function add_bullets() {
@@ -130,7 +139,7 @@
 
         function stop_adding_slides() {
             var stop = false;
-            if ( $('.slide').length > 7 ) {
+            if ( $slides.length > 7 ) {
                 stop = true;
             }
             return stop;
@@ -138,7 +147,7 @@
 
         function stop_removing_slides() {
             var stop = false;
-            if ( $('.slide').length < 2 ) {
+            if ( $slides.length < 2 ) {
                 stop = true;
             }
             return stop;
@@ -149,12 +158,11 @@
             $('.bullet:last').remove();
         }
 
-  		// ========= Application
+  		// ========= DEMO Application
 
         if ( first_creation ) {
             create_bullets();
             show_first_slide();
-            animate();
             set_color();
         }
 
@@ -174,7 +182,6 @@
                 add_new_slide();
                 add_bullets();
                 show_first_slide();
-                animate();
                 set_color();
             }
         }
@@ -189,9 +196,7 @@
             
         }
 
-        if ( animation ) {
-            animate();
-        }
+        // ========= Events
 
   		$next.click(next_slide);
   		$previous.click(previous_slide);
