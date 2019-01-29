@@ -200,7 +200,7 @@
 
   		$next.click(next_slide);
   		$previous.click(previous_slide);
-        $bullets_container.on('click','.bullet', active_bullet);
+        	$bullets_container.on('click','.bullet', active_bullet);
 
 		return this;
 
